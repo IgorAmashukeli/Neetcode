@@ -31,6 +31,9 @@ Constraints:
 idea: find current maximum from end:
 if s is the maximum value from j + 1 position to the end
 then output[j] = s
+
+time: O(n)
+space: O(1)
 **/
 
 #include <vector>
