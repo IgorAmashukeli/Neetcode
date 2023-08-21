@@ -24,6 +24,7 @@ Constraints:
 -10^9 <= nums[i] <= 10^9
 
 idea: use unordered_set
+time: O(n) in average
 **/
 
 #include <unordered_set>
