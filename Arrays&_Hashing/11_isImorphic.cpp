@@ -31,9 +31,12 @@ s and t consist of any valid ascii character.
 
 idea: create encoding of strings
 check encodings are the same
+<<<<<<< HEAD
 
 time: O(|s| + |t|)
 space: O(|s| + |t|)
+=======
+>>>>>>> origin
 **/
 
 #include <cstddef>
