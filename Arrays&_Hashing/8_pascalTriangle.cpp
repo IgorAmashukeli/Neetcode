@@ -24,7 +24,7 @@ Constraints:
 
 idea: straightforward calculation
 time: O(n^2)
-space: O(n^2)
+space: O(1)
 **/
 
 #include <cstddef>
