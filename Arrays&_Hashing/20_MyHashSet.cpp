@@ -40,6 +40,7 @@ time:
  - add: average O(1), worst O(n)
  - remove: average O(1), worst O(n)
  - contains: average O(1), worst O(n)
+space: O(n)
 **/
 
 #include <unordered_set>
