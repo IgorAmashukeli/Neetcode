@@ -23,6 +23,8 @@ Constraints:
 1 <= numRows <= 30
 
 idea: straightforward calculation
+time: O(n^2)
+space: O(n^2)
 **/
 
 #include <cstddef>

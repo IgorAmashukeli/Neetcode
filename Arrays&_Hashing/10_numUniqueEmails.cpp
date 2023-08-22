@@ -44,6 +44,8 @@ Local names do not start with a '+' character.
 Domain names end with the ".com" suffix.
 
 idea: straigtforward conversion of strings + unordered_set to count numbers
+time: O(n)
+space: O(n)
 **/
 
 #include <algorithm>

@@ -38,8 +38,8 @@ space: O(N * log M)
 
 
 second solution:
-checking  O(N * M)
-
+time:  O(N * M)
+space: O(N)
 **/
 
 #include <string>

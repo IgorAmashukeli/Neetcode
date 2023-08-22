@@ -31,6 +31,9 @@ count letters
 create hashmap
 put all the values from hashmap to vector of vectors
 
+time: n - size of vector; O(n log n)
+space: O(n)
+
 **/
 #include <array>
 #include <map>
