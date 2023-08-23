@@ -21,7 +21,10 @@ Constraints:
 0 <= nums.length <= 10^5
 -10^9 <= nums[i] <= 10^9
 
-idea: find start element of consequent sequence
+idea:
+- create hashSet of elements
+- find start element of consequent sequence
+- find all the length of sequence, starting from this value
 time: O(n)
 space: O(n)
 
