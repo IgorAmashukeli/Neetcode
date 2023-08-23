@@ -29,42 +29,75 @@ nums[i] is either 0, 1, or 2.
 Follow up: Could you come up with a one-pass algorithm using only constant extra
 space?
 
-idea: bucket sort with k = 3
-time: O(n)
+idea:
+The Dutch national flag problem!
+
+three!!! pointer technique
+ - l pointer - all elements to the left are zeroes
+ - r pointer - all elements to the right are twos
+ - i pointer - current value to change with left or right portion
+
+ - we mantain:
+ everything in [l, r] should be 1
+
+ First statement:
+ l pointer will always encounter 0 or 1, cause i already looked to the same
+value. If the value was 2, we put in the right portion of array.
+
+ r pointer can encounter 1, 2 or 0!!!!, cause i is to the left of r, and we
+could not reach this value to put it in the left portion of array.
+
+ i pointer can encouter 0, 1 or 2
+
+ Therefore wrong solution:
+
+ while (mid <= r) do:
+
+ - nums[mid] = 0 -> swap with l, increment l, mid
+ - nums[mid] = 1 -> increment mid
+ - nums[mid] = 2 -> swap with r, decrement r, mid
+
+cause, 0 getting inside of the middle part from right will destroy mantaining
+condition therefore, we need to propogate it again to l part and not increment
+mid pointer
+
+Therefore correct solution:
+
+while (mid <= r) do:
+
+ - nums[mid] = 0 -> swap with l, increment l, mid
+ - nums[mid] = 1 -> increment mid
+ - nums[mid] = 2 -> swap with r, decrement r
+
+
+average time: O(n)
 space: O(k) = O(1)
+number of linear passes: 1
 **/
 
+#include <algorithm>
 #include <cstddef>
 #include <vector>
 
 using namespace std;
 
 void sortColors(vector<int> &nums) {
-  size_t count_red = 0;
-  size_t count_white = 0;
-  size_t count_blue = 0;
-
-  // count colors
-  for (size_t i = 0; i < nums.size(); ++i) {
-    if (nums[i] == 0) {
-      count_red++;
-    } else if (nums[i] == 1) {
-      count_white++;
-    } else if (nums[i] == 2) {
-      count_blue++;
+  if (nums.size() == 0) {
+    return;
+  }
+  int l = 0;
+  int m = 0;
+  int r = nums.size() - 1;
+  while (m <= r) {
+    if (nums[m] == 0) {
+      swap(nums[l], nums[m]);
+      ++l;
+      ++m;
+    } else if (nums[m] == 1) {
+      ++m;
+    } else if (nums[m] == 2) {
+      swap(nums[m], nums[r]);
+      --r;
     }
-  }
-
-  for (size_t i = 0; i < count_red; ++i) {
-    nums[i] = 0;
-  }
-
-  for (size_t i = count_red; i < count_red + count_white; ++i) {
-    nums[i] = 1;
-  }
-
-  for (size_t i = count_red + count_white;
-       i < count_red + count_white + count_blue; ++i) {
-    nums[i] = 2;
   }
 }
