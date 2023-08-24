@@ -1,4 +1,8 @@
-/**Every valid email consists of a local name and a domain name, separated by
+/**
+https://leetcode.com/problems/unique-email-addresses/
+
+
+Every valid email consists of a local name and a domain name, separated by
 the '@' sign. Besides lowercase letters, the email may contain one or more '.'
 or '+'.
 

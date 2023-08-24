@@ -1,4 +1,7 @@
-/**Given an array nums of n integers where nums[i] is in the range [1, n],
+/**
+https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+
+Given an array nums of n integers where nums[i] is in the range [1, n],
 return an array of all the integers in the range [1, n] that do not appear in
 nums.
 
@@ -17,12 +20,21 @@ Output: [2]
 Constraints:
 
 n == nums.length
-1 <= n <= 105
+1 <= n <= 10^5
 1 <= nums[i] <= n
 
 
 Follow up: Could you do it without extra space and in O(n) runtime? You may
-assume the returned list does not count as extra space.**/
+assume the returned list does not count as extra space.
+
+idea: value are in range [1, n] -> we can use indicies [0, n - 1]
+to map values
+
+we will add 10^9 to nums[i - 1], if we found i in array
+
+time: O(n)
+space: O(1s)
+**/
 
 #include <algorithm>
 #include <vector>
@@ -31,7 +43,7 @@ using namespace std;
 
 vector<int> findDisappearedNumbers(vector<int> &nums) {
 
-  // this number doesn't exist: this is 10^6
+  // this number doesn't exist: this is 10^9
   int n = 1000000000;
 
   for (size_t i = 0; i < nums.size(); ++i) {

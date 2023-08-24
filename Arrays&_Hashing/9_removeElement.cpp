@@ -1,4 +1,5 @@
 /**
+https://leetcode.com/problems/remove-element/
 
 Given an integer array nums and an integer val, remove all occurrences of val
 in nums in-place. The order of the elements may be changed. Then return the
@@ -51,7 +52,7 @@ Constraints:
 0 <= nums[i] <= 50
 0 <= val <= 100
 
-idea: 2 pointer techique
+idea: 2 pointer techique: remove_if STL algorithm
 
 time: O(n)
 space: O(1)

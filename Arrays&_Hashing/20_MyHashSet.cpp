@@ -1,4 +1,7 @@
-/**Design a HashSet without using any built-in hash table libraries.
+/**
+https://leetcode.com/problems/design-hashset/
+
+Design a HashSet without using any built-in hash table libraries.
 
 Implement MyHashSet class:
 

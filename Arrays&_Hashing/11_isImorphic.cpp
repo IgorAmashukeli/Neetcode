@@ -1,4 +1,7 @@
-/**Given two strings s and t, determine if they are isomorphic.
+/**
+https://leetcode.com/problems/isomorphic-strings/
+
+Given two strings s and t, determine if they are isomorphic.
 
 Two strings s and t are isomorphic if the characters in s can be replaced to get
 t.
@@ -31,12 +34,9 @@ s and t consist of any valid ascii character.
 
 idea: create encoding of strings
 check encodings are the same
-<<<<<<< HEAD
 
 time: O(|s| + |t|)
 space: O(|s| + |t|)
-=======
->>>>>>> origin
 **/
 
 #include <cstddef>

@@ -1,4 +1,7 @@
-/**Given an array nums with n objects colored red, white, or blue, sort them
+/**
+https://leetcode.com/problems/sort-colors/
+
+Given an array nums with n objects colored red, white, or blue, sort them
 in-place so that objects of the same color are adjacent, with the colors in the
 order red, white, and blue.
 
@@ -32,7 +35,7 @@ space?
 idea:
 The Dutch national flag problem!
 
-three!!! pointer technique
+unsymmetric three!!! pointer technique remove_if to both sides
  - l pointer - all elements to the left are zeroes
  - r pointer - all elements to the right are twos
  - i pointer - current value to change with left or right portion
