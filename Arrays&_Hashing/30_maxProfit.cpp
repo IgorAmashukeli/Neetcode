@@ -1,4 +1,7 @@
-/**You are given an integer array prices where prices[i] is the price of a given
+/**
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+
+You are given an integer array prices where prices[i] is the price of a given
 stock on the ith day.
 
 On each day, you may decide to buy and/or sell the stock. You can only hold at
@@ -45,8 +48,9 @@ d - a = d - c + c - a <= d - c + b - a
 
 Now, prices array array can be divided into parts:
 Increasing price, decreasing part, part with equal prices.
-All the parts with equal prices are not interesting, we can skip them
 
+All the parts with equal prices are not interesting, we can skip them from
+observing. Now,
 
 
 **/

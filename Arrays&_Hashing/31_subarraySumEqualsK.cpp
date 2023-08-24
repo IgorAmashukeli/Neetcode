@@ -1,4 +1,7 @@
-/**Given an array of integers nums and an integer k, return the total number of
+/**
+https://leetcode.com/problems/subarray-sum-equals-k/
+
+Given an array of integers nums and an integer k, return the total number of
 subarrays whose sum equals to k.
 
 A subarray is a contiguous non-empty sequence of elements within an array.
@@ -73,9 +76,10 @@ int subarraySum(const vector<int> &nums, int K) {
     count += sum_counts[prefix_sum - K];
   }
 
-  // however, if K == 0
+  // however, if K == 0, nums.size() redundant empty subarrays for each of
+  // non-empty prefix counted!!!
   if (K == 0) {
-    count -= (nums.size() + 1);
+    count -= (nums.size());
   }
 
   return count;
