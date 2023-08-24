@@ -53,6 +53,9 @@ idea:
 2) iteration over edge center possible candidates, with checking if such exist
 3) check is done using consecutive binary search
 
+time: O(n)
+space: O(n)
+
 **/
 
 #include <string>
