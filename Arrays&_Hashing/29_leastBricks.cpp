@@ -1,4 +1,7 @@
-/**There is a rectangular brick wall in front of you with n rows of bricks. The
+/**
+https://leetcode.com/problems/brick-wall/
+
+There is a rectangular brick wall in front of you with n rows of bricks. The
 ith row has some number of bricks each of the same height (i.e., one unit) but
 they can be of different widths. The total width of each row is the same.
 
@@ -34,7 +37,8 @@ Instead of checking each column to get the number of crosses,
 we go through each row and remember positions of gaps
 
 Thus, we get not O(n * width), but O(number of bricks),
-which is actuall O(n * width)
+which is actually O(n * width), cause there is a number of
+walls, where width is actually is the number of bricks
 
 time: O(nuber of bricks)
 space: O(sum(wall[i]))
