@@ -40,6 +40,10 @@ n == dominoes.length
 dominoes[i] is either 'L', 'R', or '.'.
 
 idea: straightforward making dominoes, when found L -> go backwards
+and fall according to previous push symbol
+if previous was L or . : push all to the left
+if previous was R: push right half to the left, left half to the right and don't
+change the middle
 time: O(n)
 space: O(1)
 
