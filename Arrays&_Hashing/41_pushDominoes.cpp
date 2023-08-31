@@ -37,7 +37,13 @@ Constraints:
 
 n == dominoes.length
 1 <= n <= 10^5
-dominoes[i] is either 'L', 'R', or '.'.**/
+dominoes[i] is either 'L', 'R', or '.'.
+
+idea: straightforward making dominoes, when found L -> go backwards
+time: O(n)
+space: O(1)
+
+**/
 
 #include <cstddef>
 #include <string>
@@ -124,6 +130,9 @@ string pushDominoes(const string &dominoes) {
         curPush = '.';
         curPushIndex = i;
       }
+      // else curPush == 'R' or '.'
+      // if curPush == '.' => there is nothing to change
+      // if curPush == 'R' => we don't need to change also
     }
 
     // if curPush was "->" or ".", start making curPush

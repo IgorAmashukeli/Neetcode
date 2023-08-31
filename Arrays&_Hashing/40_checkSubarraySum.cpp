@@ -36,6 +36,11 @@ Constraints:
 0 <= sum(nums[i]) <= 2^31 - 1
 1 <= k <= 2^31 - 1
 
+idea: create unordered map of last (at least i-2 ending) prefix sum position by
+remaiders
+time: O(n)
+space: O(n)
+
 **/
 
 #include <unordered_map>
@@ -48,7 +53,6 @@ bool checkSubarraySum(vector<int> &nums, int k) {
   // 0...k-1 -> remainders of k -> last positions, where such prefix was,
   // ending on i - 2, cause we need length 2
   // -1 - empty
-  // -2 - not found
 
   unordered_map<int, int> positions;
   int cur_prefix = 0;
