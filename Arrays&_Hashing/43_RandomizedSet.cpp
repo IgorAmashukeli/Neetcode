@@ -38,7 +38,18 @@ Constraints:
 -2^31 <= val <= 2^31 - 1
 At most 2 * 10^5 calls will be made to insert, remove, and getRandom.
 There will be at least one element in the data structure when getRandom is
-called.**/
+called.
+
+
+idea: vector of values, hash map of positions,
+when inserting: push_back + update hash map
+when removing: swap + pop_back + update hash map
+when geting random : get rand index
+
+time: average O(1) for insert, remove and getRandom
+space: O(n)
+
+**/
 
 #include <cstdlib>
 #include <unordered_map>
@@ -73,9 +84,11 @@ public:
     if (!positions_.contains(val)) {
       return false;
     }
+
+    // position of current value
     int position = positions_[val];
 
-    // change positions, to make fast pop_back
+    // change positions, to make fast pop_back for value
     swap(values_[position], values_[size_ - 1]);
 
     // remember new position of last element
@@ -92,7 +105,7 @@ public:
   }
 
   int getRandom() {
-    // random_index
+    // random_index (kind of uniform)
     int rand_index = rand() % size_;
 
     // return random value
