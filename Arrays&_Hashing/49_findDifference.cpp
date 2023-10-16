@@ -29,7 +29,13 @@ in nums2 is present in nums1. Therefore, answer[1] = [].
 Constraints:
 
 1 <= nums1.length, nums2.length <= 1000
--1000 <= nums1[i], nums2[i] <= 1000**/
+-1000 <= nums1[i], nums2[i] <= 1000
+
+idea: put to a sets, find straightforward difference
+time: O(n)
+space: O(n)
+
+**/
 
 #include <set>
 #include <vector>

@@ -33,10 +33,11 @@ a_i <s a_j in larger value. Moreover, there exist k and r that a_k >s a_r in
 answer and a_k <s a_r in larger value and a_k and a_r are consecutive in larger
 value. If a_i and a_j are consecutive: k = i and r = j. Else, a_k and a_r are
 located between (including a_i and a_j) a_i and a_j in larger value. (If they
-don't exist, a_i >=s ... >=s a_j => a_i >=s a_j => contradiction)
+don't exist, a_i >=s ... >=s a_j => a_i >=s a_j => contradiction).
 
+time: O(n log n)
+space: O(n)
 
-)
 **/
 #include <algorithm>
 #include <cstdint>

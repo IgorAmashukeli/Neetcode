@@ -449,7 +449,7 @@ vector<size_t> KMP(const string &P, const string &T) {
       }
     }
 
-    return -1;
+    return answer;
   }
 
 correctly finds the start positions of occurences of "S" in "T" in O(|S| +
