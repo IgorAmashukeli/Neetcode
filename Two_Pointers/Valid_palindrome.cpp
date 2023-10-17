@@ -36,7 +36,6 @@ Constraints:
 s consists only of printable ASCII characters
 
 idea: two pointers, while checking non-alpha-numeric and doing tolower
-
 **/
 
 using namespace std;
