@@ -47,7 +47,7 @@ bool isAlphaNumeric(char chr) {
          (chr - 'A' >= 0 && chr - 'A' <= 25);
 }
 
-bool isPalindrome(string s) {
+bool isPalindrome(const string &s) {
 
   // empty string
   if (s.size() == 0) {
