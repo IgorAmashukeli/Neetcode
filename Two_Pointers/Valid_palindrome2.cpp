@@ -165,5 +165,3 @@ bool validPalindrome(const string &s) {
   return skip_palindrome(s, 0, s.size() - 1, false) ||
          skip_palindrome(s, 0, s.size() - 1, true);
 }
-
-int main() { cout << boolalpha << validPalindrome("arra") << "\n"; }
