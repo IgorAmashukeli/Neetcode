@@ -25,7 +25,7 @@ Output: false
 
 Constraints:
 
-1 <= s.length <= 105
+1 <= s.length <= 10^5
 s consists of lowercase English letters.
 
 idea:
