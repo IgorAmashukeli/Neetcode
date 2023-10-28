@@ -82,7 +82,6 @@ int removeDuplicates(vector<int> &nums) {
     // check if it is new group
     if (nums[j] != previous || j == 0) {
       swap(nums[i], nums[j]);
-      cout << "\n";
       ++i;
     }
 
