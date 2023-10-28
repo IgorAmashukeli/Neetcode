@@ -92,7 +92,8 @@ That means that the output is always correct.
 
 using namespace std;
 
-void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
+// my solution, but we don't need reversing
+void merge2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
 
   // nothing to merge
   if (n == 0) {
@@ -138,14 +139,48 @@ void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   }
 }
 
-int main() {
-  vector<int> nums1 = {0};
-  vector<int> nums2 = {1};
-  int m = 1;
-  int n = 1;
-  merge(nums1, m, nums2, n);
-  for (int i = 0; i < m + n; ++i) {
-    cout << nums1[i] << " ";
+// another solution without reversing
+
+// actually, we can change the comparison at the merge part
+// and start copying to the end the correct version of output
+
+// Again, by the "enough places" observation, there will be never
+// problems with collision (now there should be k + 1 places for
+// k + 1 + non-zero number of elements in decreasing order)
+// neetcode solution
+
+void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
+
+  // nothing to merge
+  if (n == 0) {
+    return;
   }
-  cout << "\n";
+
+  // nothing in nums1
+  if (m == 0) {
+    for (int i = 0; i < n; ++i) {
+      nums1[i] = nums2[i];
+    }
+  }
+
+  // indicies of nums1, nums2 and result array nums1
+  int i = m - 1;
+  int j = n - 1;
+  int k = m + n - 1;
+
+  while (k >= 0) {
+
+    // copying from nums1
+    if ((i >= 0 && j >= 0 && nums1[i] >= nums2[j]) || (j < 0)) {
+      nums1[k] = nums1[i];
+      --i;
+      --k;
+
+      // copying from nums2
+    } else if ((i >= 0 && j >= 0 && nums1[i] <= nums2[j]) || (i < 0)) {
+      nums1[k] = nums2[j];
+      --j;
+      --k;
+    }
+  }
 }
