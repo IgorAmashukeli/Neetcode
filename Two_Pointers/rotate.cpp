@@ -2,6 +2,93 @@
 #include <iostream>
 #include <vector>
 
+/**Given an integer array nums, rotate the array to the right by k steps, where
+k is non-negative.
+
+
+
+Example 1:
+
+Input: nums = [1,2,3,4,5,6,7], k = 3
+Output: [5,6,7,1,2,3,4]
+Explanation:
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+Example 2:
+
+Input: nums = [-1,-100,3,99], k = 2
+Output: [3,99,-1,-100]
+Explanation:
+rotate 1 steps to the right: [99,-1,-100,3]
+rotate 2 steps to the right: [3,99,-1,-100]
+
+
+Constraints:
+
+1 <= nums.length <= 10^5
+-2^31 <= nums[i] <= 2^31 - 1
+0 <= k <= 10^5
+
+
+Follow up:
+
+Try to come up with as many solutions as you can. There are at least three
+different ways to solve this problem. Could you do it in-place with O(1) extra
+space?
+
+
+idea: three different solutions:
+
+first solution (rotate)
+
+1) if k < n / 2 =>
+ - swap first k with the last k
+ - now we need to swap middle n - 2 * k with last k
+    - reverse last k
+    - reverse middle n - 2 * k
+    - reverse last n - k
+2) if k > n / 2
+ - swap first n - k with the last n - l
+ - now we need to swap fist n - k with the middle n - 2 * k
+     - reverse first k
+     - reverse middle n - 2 * k
+     - reverse first n - k
+
+
+another solution (rotate3)
+let's observe that we need to swap first k with last n - k
+    - reverse first k
+    - reverse last n - k
+    - reverse all elements
+
+
+another solution (rotate2)
+again let's observe that we need to swap first k with last n - k
+    do recursive swapping
+you need two functions for this
+
+first function is equalSwap: swap two ranges of equal sizes together
+    - this one is straigtforward
+
+second function is bigSwap: swap two ranges of different sizes together
+    - this one divides into cases
+    - first: len1 < len2:
+    [ ] [                ]
+    Then swap first len1 with last len1, using equal swap
+    [ ] [             ][ ]
+    then observe, we need to swap the first with the second: do bigSwap on them
+
+    - second: len1 > len2:
+    [                 ][ ]
+    Then swap len2 with last len2, using equal swap
+    [ ] [             ][ ]
+    then observe, we need to swap the second with the third: do bigSwap on them
+
+
+
+**/
+
 using namespace std;
 
 // rotate array to the right
