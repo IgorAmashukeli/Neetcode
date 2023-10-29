@@ -70,7 +70,8 @@ we skip all equal nums[i]
 (actually we can skip nums[i] or nums[j], cause they can never be there in the
 output, cause this is repetition, but we don't need to: when nums[i] will
 increase the result is not nums[k] + nums[i] + nums[j] => we will move j
-definetely to the left => therefore everything is already checked for nums[j])
+definetely to the left => therefore everything is already checked for nums[j]
+and will be skipped)
 **/
 
 using namespace std;
