@@ -214,12 +214,3 @@ vector<int> rearrangeArray(vector<int> &nums) {
   }
   return nums;
 }
-
-int main() {
-  vector<int> nums = {6, 2, 0, 9, 7};
-  nums = rearrangeArray(nums);
-  for (size_t i = 0; i < nums.size(); ++i) {
-    cout << nums[i] << " ";
-  }
-  cout << "\n";
-}
