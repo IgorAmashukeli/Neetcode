@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -46,6 +47,24 @@ sufix sums for each prefix sums find the value - prefix sum in the map and it
 position if the sum of the positions is valid (<= n, not intersecting prefix and
 suffix sums) and less than global minimum, update global minimum
 
+
+
+another idea: find prefix sums and value - sufix sums on the fly, while moving
+left and right pointer prefix sums are sorted in ascending order.
+
+sufix sums are sorted in ascending order.
+value - sufix sums are sorted in descending order.
+but the min value in value - sufix sums is value - sum of all the array and each
+next value can be found by adding nums[i].
+Therefore, we can iterate over "value - sufix sums" in ascending order.
+
+Therefore, there are two arrays: prefix sums and "value - sufix sums" in
+ascending order and the task is to find equal elements with lowest sum of index
+of the first array + n - sum of the second array (because, we are iterating over
+the second array in reverse order). This can be done, using two pointer
+techinique: if a[left] < b[right] -> left++ if a[right] < b[left] -> right++
+else check and update the sum of indices.
+
 **/
 
 using namespace std;
@@ -54,37 +73,47 @@ class Solution {
 public:
   int minOperations(vector<int> &nums, int x) {
     bool found = false;
-    int min_op = nums.size();
-    unordered_map<long long, int> prefix_positions;
-    unordered_map<long long, int> suffix_positions;
-    long long prefix_sum = 0;
-    long long suffix_sum = 0;
-    prefix_positions[0] = 0;
-    suffix_positions[0] = 0;
-    for (size_t i = 0; i < nums.size(); ++i) {
-      prefix_sum = prefix_sum + nums[i];
-      prefix_positions[prefix_sum] = i + 1;
+    int min_ops = nums.size() + 1;
+    if (nums.size() == 0) {
+      return -1;
     }
-    for (size_t i = 0; i < nums.size(); ++i) {
-      size_t j = nums.size() - i - 1;
-      suffix_sum = suffix_sum + nums[j];
-      suffix_positions[suffix_sum] = i + 1;
+    long long sufix = x;
+    long long prefix = 0;
+    for (size_t k = 0; k < nums.size(); ++k) {
+      sufix -= nums[k];
     }
 
-    for (const auto &[value, pref_pos] : prefix_positions) {
-      if (suffix_positions.contains(x - value)) {
-        int suf_pos = suffix_positions[x - value];
-        if (pref_pos + suf_pos <= min_op) {
+    int left = 0;
+    int right = 0;
+    while (left < nums.size() || right < nums.size()) {
+      if (prefix == sufix) {
+        size_t right_index = nums.size() - right;
+        if (right_index + left <= nums.size() && left + right_index < min_ops) {
           found = true;
-          min_op = pref_pos + suf_pos;
+          min_ops = left + right_index;
         }
+        if (left < right) {
+          prefix += nums[left];
+          left++;
+        } else {
+          sufix += nums[right];
+          right++;
+        }
+      } else if ((prefix < sufix && left < nums.size()) ||
+                 right >= nums.size()) {
+        prefix += nums[left];
+        left++;
+      } else if ((prefix > sufix && right < nums.size()) ||
+                 left >= nums.size()) {
+        sufix += nums[right];
+        right++;
       }
     }
 
     if (!found) {
       return -1;
     } else {
-      return min_op;
+      return min_ops;
     }
   }
 };
