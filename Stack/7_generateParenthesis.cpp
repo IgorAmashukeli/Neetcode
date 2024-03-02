@@ -101,8 +101,6 @@ Now, open = n / 2. Now we only have a call to add a close bracket, because
 
 
 
-
-
 **/
 
 using namespace std;
