@@ -1,5 +1,6 @@
 #include <functional>
 #include <iostream>
+#include <random>
 #include <set>
 #include <stack>
 #include <vector>
@@ -239,8 +240,122 @@ public:
   }
 };
 
+bool int_greater_equal(int a, int b) { return a >= b; }
+
+bool int_less_equal(int a, int b) { return a <= b; }
+
+class MonotonicStack2 {
+public:
+  MonotonicStack2(bool (*func)(int, int)) { order_ = func; }
+  int push(int element, size_t index) {
+
+    while (!stack_.empty() && order_(element, stack_.top().first)) {
+      stack_.pop();
+    }
+    int next;
+    if (stack_.empty()) {
+      next = -1;
+    } else {
+      next = stack_.top().second;
+    }
+
+    stack_.push({element, index});
+    return next;
+  }
+
+private:
+  stack<pair<int, size_t>> stack_;
+  bool (*order_)(int, int);
+};
+
+class Solution2 {
+public:
+  bool find132pattern(vector<int> &nums) {
+    stack<int> answer;
+    for (size_t i = 0; i < nums.size(); ++i) {
+      if (answer.empty()) {
+        answer.push(nums[i]);
+      } else if (answer.size() == 1 && nums[i] < answer.top()) {
+        answer.pop();
+        answer.push(nums[i]);
+      } else if (answer.size() == 1 && nums[i] > answer.top()) {
+        answer.push(nums[i]);
+      } else if (answer.size() == 2 && nums[i] > answer.top()) {
+        answer.pop();
+        answer.push(nums[i]);
+      } else if (answer.size() == 2 && nums[i] < answer.top()) {
+        int prev = answer.top();
+        answer.pop();
+        int prevprev = answer.top();
+        if (prevprev < nums[i]) {
+          return true;
+        }
+        answer.push(prev);
+      }
+    }
+    vector<int> next_greater(nums.size());
+    vector<int> next_smaller(nums.size());
+    MonotonicStack2 greaterStack = MonotonicStack2(int_greater_equal);
+    MonotonicStack2 lessStack = MonotonicStack2(int_less_equal);
+    for (size_t i = 0; i < nums.size(); ++i) {
+      size_t j = nums.size() - i - 1;
+      next_greater[j] = greaterStack.push(nums[j], j);
+      next_smaller[j] = lessStack.push(nums[j], j);
+    }
+    for (size_t i = 0; i < nums.size(); ++i) {
+      if (next_greater[i] != -1 && next_smaller[next_greater[i]] != -1 &&
+          nums[next_smaller[next_greater[i]]] > nums[i]) {
+        return true;
+      }
+    }
+    reverse(nums.begin(), nums.end());
+    vector<int> next_greater2(nums.size());
+    vector<int> next_smaller2(nums.size());
+    MonotonicStack2 greaterStack2 = MonotonicStack2(int_greater_equal);
+    MonotonicStack2 lessStack2 = MonotonicStack2(int_less_equal);
+    for (size_t i = 0; i < nums.size(); ++i) {
+      size_t j = nums.size() - i - 1;
+      next_greater2[j] = greaterStack2.push(nums[j], j);
+      next_smaller2[j] = lessStack2.push(nums[j], j);
+    }
+    for (size_t i = 0; i < nums.size(); ++i) {
+      if (next_greater2[i] != -1 && next_smaller2[next_greater2[i]] != -1 &&
+          nums[next_smaller2[next_greater2[i]]] < nums[i]) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
 int main() {
-  Solution solution = Solution();
-  vector<int> vec = {-1, 3, 2, 0};
-  cout << boolalpha << solution.find132pattern(vec) << "\n";
+  while (true) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 2); // Adjust range as needed
+
+    // Generate a random size for the vector (up to 30)
+    std::uniform_int_distribution<> size_dis(1, 6);
+    int vector_size = size_dis(gen);
+
+    // Create the vector and fill it with random integers
+    std::vector<int> random_vector;
+    random_vector.reserve(
+        vector_size); // Optional, to avoid reallocation if possible
+
+    for (int i = 0; i < vector_size; ++i) {
+      random_vector.push_back(dis(gen));
+    }
+    Solution solution = Solution();
+    Solution2 solution2 = Solution2();
+    if (solution.find132pattern(random_vector) !=
+        solution2.find132pattern(random_vector)) {
+      reverse(random_vector.begin(), random_vector.end());
+      for (auto elem : random_vector) {
+        cout << elem << ", ";
+      }
+      cout << "\n";
+      break;
+    }
+  }
 }
